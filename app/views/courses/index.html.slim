@@ -1,0 +1,34 @@
+.l-heading
+  h1 言語選択
+  p 練習したい言語を選んでください
+
+.l-courses
+  = link_to courses_path(language: 'ruby'), class: 'c-button__link'
+    .c-button
+      | Rubyコース
+  = link_to courses_path(language: 'javascript'), class: 'c-button__link'
+    .c-button
+      | JavaScriptコース
+  = link_to courses_path(language: 'python'), class: 'c-button__link'
+    .c-button
+      | Pythonコース
+  = link_to courses_path(language: 'java'), class: 'c-button__link'
+    .c-button 
+      | Javaコース
+  = link_to courses_path(language: 'csharp'), class: 'c-button__link'
+    .c-button
+      | C#コース 
+  = link_to courses_path(language: 'php'), class: 'c-button__link'
+    .c-button
+      | PHPコース
+  = link_to courses_path(language: 'go'), class: 'c-button__link'
+    .c-button
+      | Goコース
+  = link_to courses_path(language: 'typescript'), class: 'c-button__link'
+    .c-button
+      | TypeScriptコース
+  = link_to courses_path(language: 'kotlin'), class: 'c-button__link'
+    .c-button
+      | Kotlinコース
+  
+  
