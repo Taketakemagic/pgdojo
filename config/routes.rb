@@ -3,8 +3,11 @@ Rails.application.routes.draw do
 
   get "/" => "top#index", as: :top
 
-
   get "courses" => "courses#index", as: :courses
 
+  get "games/:gaame_id" => "games#index", as: :games
+  post "games/submit" => "games#submit", as: :game_submit
+
+  get "result" => "result#index", as: :result
 
 end
