@@ -4,7 +4,7 @@
 
 .l-courses
   - @languages.each do |language|
-    = link_to games_path(gaame_number: language.id), class: 'c-button__link'
+    = link_to games_path(game_id: language.id), class: 'c-button__link'
       .c-button
         = language.name
   

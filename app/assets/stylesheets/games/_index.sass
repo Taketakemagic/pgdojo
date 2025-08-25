@@ -1,0 +1,82 @@
+.game-screen
+  padding: 40px
+  background-color: #0f172a
+  color: white
+  font-family: 'Fira Code', monospace
+  display: flex
+  flex-direction: column
+  align-items: center
+
+.question-block
+  width: 100%
+  max-width: 800px
+  margin-bottom: 40px
+  padding: 20px
+  background-color: #1e293b
+  border-radius: 8px
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3)
+  transition: opacity 0.3s ease
+
+.code-line
+  margin-bottom: 20px
+  display: flex
+  flex-direction: column
+
+  pre
+    background-color: #334155
+    padding: 10px 14px
+    border-radius: 6px
+    font-size: 16px
+    color: #e2e8f0
+    margin-bottom: 8px
+    white-space: pre-wrap
+
+.typing-field
+  padding: 10px 14px
+  font-size: 16px
+  border: 2px solid #3b82f6
+  border-radius: 6px
+  background-color: #0f172a
+  color: white
+  transition: border-color 0.3s ease, box-shadow 0.3s ease
+
+  &:focus
+    outline: none
+    border-color: #60a5fa
+    box-shadow: 0 0 8px rgba(96, 165, 250, 0.5)
+
+  &.error
+    border-color: #ef4444
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.5)
+
+.typing-field.error
+  border-color: #ef4444
+  color: #ef4444
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.5)
+
+@keyframes shake
+  0%, 100%
+    transform: translateX(0)
+  25%
+    transform: translateX(-4px)
+  75%
+    transform: translateX(4px)
+
+.typing-field.shake
+  animation: shake 0.3s ease
+
+
+.result-button
+  margin-top: 30px
+  padding: 12px 24px
+  background-color: #3b82f6
+  color: white
+  font-weight: bold
+  border: none
+  border-radius: 6px
+  cursor: pointer
+  transition: background-color 0.3s ease
+
+  &:hover
+    background-color: #60a5fa
+    

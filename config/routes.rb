@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get "courses" => "courses#index", as: :courses
 
-  get "games/:gaame_id" => "games#index", as: :games
+  get "games/:game_id" => "games#index", as: :games
   post "games/submit" => "games#submit", as: :game_submit
 
   get "result" => "result#index", as: :result

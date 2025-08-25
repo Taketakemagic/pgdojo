@@ -1,8 +1,7 @@
 .game-screen data-controller="typing"
-  - @questions.each_with_index do |question, index|
-    .question-block data-typing-target="question" data-index="#{index}" style="display: #{index == 0 ? 'block' : 'none'}"
-      pre= question.content
-
-  input.typing-field data-typing-target="input" placeholder="コードを入力" autofocus
-
-  
+  - @questions.each_with_index do |question, q_index|
+    .question-block data-typing-target="question" data-index="#{q_index}" style="display: #{q_index == 0 ? 'block' : 'none'}"
+      - question.content.split(/\\n|¥n|\n/).each_with_index do |line, l_index|
+        .code-line
+          pre= line.strip
+          input.typing-field data-typing-target="input" data-line-index="#{l_index}" placeholder="この行を入力"
