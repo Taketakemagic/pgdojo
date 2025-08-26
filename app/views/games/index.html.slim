@@ -5,3 +5,7 @@
         .code-line
           pre= line.strip
           input.typing-field data-typing-target="input" data-line-index="#{l_index}" placeholder="この行を入力"
+
+= form_with url: result_create_path, method: :post, id: "result-form", style: "display: none" do |f|
+  = f.hidden_field :duration
+  = f.hidden_field :miss_data

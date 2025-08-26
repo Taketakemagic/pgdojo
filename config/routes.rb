@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   post "games/submit" => "games#submit", as: :game_submit
 
   get "result" => "result#index", as: :result
+  post "result" => "result#create", as: :result_create
 
 end

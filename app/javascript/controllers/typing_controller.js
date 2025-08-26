@@ -4,32 +4,35 @@ export default class extends Controller {
   static targets = ["question", "input"]
 
   connect() {
+    this.startTime = new Date()
     this.currentQuestionIndex = 0
     this.currentLineIndex = 0
-    this.questions = this.questionTargets
-    this.inputs = this.questions[this.currentQuestionIndex].querySelectorAll(".typing-field")
+    this.questions = this.questionTargets//問題をすべて取得
+    this.inputs = this.questions[this.currentQuestionIndex].querySelectorAll(".typing-field")//最初の問題の入力欄を取得
     this.activateInput()
   }
 
   activateInput() {
     this.inputs.forEach((input, index) => {
-      input.style.display = index === this.currentLineIndex ? "block" : "none"
+      input.style.display = index === this.currentLineIndex ? "block" : "none" //現在の行だけ表示
     })
-    this.inputs[this.currentLineIndex].focus()
+    this.inputs[this.currentLineIndex].focus() //現在の行にフォーカス
   }
 
   initialize() {
+    this.missCounts = {}
     document.addEventListener("keydown", (e) => {
       if (e.key === "Enter") this.checkLine()
     })
   }
 
   checkLine() {
-    const input = this.inputs[this.currentLineIndex]
-    const expected = input.previousElementSibling.textContent.trim()
-    const actual = input.value.trim()
+    const key = `q${this.currentQuestionIndex}l${this.currentLineIndex}`
+    const input = this.inputs[this.currentLineIndex] //現在の入力欄(デザイン用)
+    const expected = input.previousElementSibling.textContent.trim() //期待されるテキスト
+    const actual = input.value.trim() //ユーザーが入力したテキスト
 
-    if (expected === actual) {
+    if (expected === actual) { // 正解
       input.classList.remove("error") // エラー演出を解除
       input.style.display = "none"
       this.currentLineIndex++
@@ -46,10 +49,12 @@ export default class extends Controller {
           this.inputs = this.questions[this.currentQuestionIndex].querySelectorAll(".typing-field")
           this.activateInput()
         } else {
-          window.location.href = "/result"
+          console.log("currentQuestionIndex");
+          this.endGame()
         }
       }
     } else {
+      this.missCounts[key] = (this.missCounts[key] || 0) + 1
       input.classList.add("error") // エラー演出を追加
       input.classList.remove("shake") // アニメーションを再発火させるため一度外す
       void input.offsetWidth // 強制リフローで再発火
@@ -57,5 +62,20 @@ export default class extends Controller {
     }
   }
 
+  endGame() {
+    console.log("endGame");
+    const endTime = new Date()
+    const duration = Math.floor((endTime - this.startTime) / 1000) // 秒数
+    this.submitResult(duration)
+  }
+
+  submitResult(duration) {
+    console.log("submitResult");
+    
+    const form = document.getElementById("result-form")
+    form.querySelector("[name='duration']").value = duration
+    form.querySelector("[name='miss_data']").value = JSON.stringify(this.missCounts)
+    form.submit()
+  }
 
 }
