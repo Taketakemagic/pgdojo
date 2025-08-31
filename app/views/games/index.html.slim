@@ -1,3 +1,8 @@
+.spinner-overlay id="spinner"
+  .spinner
+
+.countdown-overlay data-controller="countdown"
+  h1.countdown-number data-countdown-target="number" 3
 .game-screen data-controller="typing"
   - @questions.each_with_index do |question, q_index|
     .question-block data-typing-target="question" data-index="#{q_index}" style="display: #{q_index == 0 ? 'block' : 'none'}"

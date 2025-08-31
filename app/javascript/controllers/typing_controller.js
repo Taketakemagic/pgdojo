@@ -49,6 +49,8 @@ export default class extends Controller {
           this.inputs = this.questions[this.currentQuestionIndex].querySelectorAll(".typing-field")
           this.activateInput()
         } else {
+          const spinner = document.getElementById("spinner")
+          if (spinner) spinner.style.display = "block"
           console.log("currentQuestionIndex");
           this.endGame()
         }

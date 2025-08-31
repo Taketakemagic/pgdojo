@@ -20,11 +20,12 @@ html
 
   body
     header
-      .logo PGタイピング
+      = link_to top_path do
+        .logo PGタイピング
       nav
         ul
-          li = link_to 'コース選択', top_path
-          li = link_to 'ランキング', top_path
-          li = link_to 'ログイン', top_path
+          li = link_to 'コース選択', courses_path
+          / li = link_to 'ランキング', top_path
+          / li = link_to 'ログイン', top_path
     = yield
 

@@ -1,32 +1,60 @@
-ruby = Language.find_or_create_by!(name: "Ruby", code_name: "ruby")
+# Ruby タイピングゲーム問題データ（解説付き）
+# language_id: Ruby言語のID（例：1）
 
 questions = [
-  'puts "Hello, world!"',
-  'name = "Takeshi"\nputs "Hello, #{name}!"',
-  '3.times { puts "Ruby!" }',
-  'array = [1, 2, 3]\narray.each { |n| puts n * 2 }',
-  'def greet(name)\n  "Hello, #{name}"\nend',
-  'puts greet("Yuki")',
-  'if 5 > 3\n  puts "True"\nend',
-  'user = { name: "Taro", age: 25 }\nputs user[:name]',
-  '(1..5).map { |n| n ** 2 }',
-  'class Dog\n  def bark\n    puts "ワン！"\n  end\nend',
-  'dog = Dog.new\ndog.bark',
-  'numbers = [1, 2, 3, 4, 5]\neven = numbers.select { |n| n.even? }',
-  'puts even.join(", ")',
-  'def factorial(n)\n  return 1 if n <= 1\n  n * factorial(n - 1)\nend',
-  'puts factorial(5)',
-  'score = 85\ngrade = score >= 80 ? "A" : "B"',
-  'puts "Your grade is #{grade}"',
-  'require \'date\'\nputs Date.today',
-  'text = "Ruby is fun"\nputs text.upcase',
-  '5.downto(1) { |i| puts i }'
+  {
+    content: 'def greet(name)\n  puts \"Hello, #{name}!\"\nend',
+    language_id: 1,
+    difficulty: "easy",
+    explanation: 'メソッド定義と文字列補間。#{}内の変数が文字列に展開されます。'
+  },
+  {
+    content: 'items.each_with_index { |item, i| puts \"#{i}: #{item}\" }',
+    language_id: 1,
+    difficulty: "medium",
+    explanation: "each_with_indexで要素とインデックスを同時に取得できます。"
+  },
+  {
+    content: 'define_method(\"#{attr_name}_changed?\") do\n  instance_variable_get(\"@#{attr_name}_changed\")\nend',
+    language_id: 1,
+    difficulty: "hard",
+    explanation: "メタプログラミング。動的にメソッドを定義し、インスタンス変数を動的に取得します。"
+  },
+  {
+    content: 'instance_variable_set(\"@#{attr}\", value)',
+    language_id: 1,
+    difficulty: "hard",
+    explanation: "インスタンス変数を動的に設定。変数名を文字列で指定して値を代入します。"
+  },
+  {
+    content: 'tap { |obj| logger.debug \"Processing: #{obj}\" }',
+    language_id: 1,
+    difficulty: "hard",
+    explanation: "tapメソッドで副作用を実行しつつ、元のオブジェクトをそのまま返します。"
+  },
+  {
+    content: 'eval(\"def #{method_name}; "dynamic"; end\")',
+    language_id: 1,
+    difficulty: "hard",
+    explanation: "evalで文字列をRubyコードとして実行。動的にメソッドを定義しています。"
+  },
 ]
 
-questions.each do |code|
-  Question.create!(
-    content: code,
-    language: ruby,
-    difficulty: "easy"
-  )
+questions.each do |q|
+  Question.create!(q)
 end
+
+
+
+# puts "=== Ruby タイピングゲーム問題データ ==="
+# puts "総問題数: #{questions.length}問"
+# puts "初級: #{questions.count { |q| q[:difficulty] == 'easy' }}問"
+# puts "中級: #{questions.count { |q| q[:difficulty] == 'medium' }}問"
+# puts "上級: #{questions.count { |q| q[:difficulty] == 'hard' }}問"
+# puts
+
+# # データベースへの挿入例
+# questions.each_with_index do |question_data, index|
+#   puts "#{index + 1}. [#{question_data[:difficulty].upcase}] #{question_data[:content].lines.first.strip}"
+#   # Question.create!(question_data)  # 実際の挿入時はコメントアウト
+# end

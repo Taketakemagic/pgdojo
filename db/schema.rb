@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_23_074535) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_31_135909) do
   create_table "languages", force: :cascade do |t|
     t.string "name"
     t.string "code_name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_23_074535) do
     t.string "difficulty"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "explanation"
     t.index ["language_id"], name: "index_questions_on_language_id"
   end
 
