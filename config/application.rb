@@ -3,6 +3,7 @@ require_relative "boot"
 require "rails/all"
 
 Bundler.require(*Rails.groups)
+Dotenv::Railtie.load if Rails.env.production?
 
 module Pgdojo
   class Application < Rails::Application
