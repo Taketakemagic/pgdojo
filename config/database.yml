@@ -32,3 +32,13 @@ cable:
   password: <%= ENV["PG_DB_PASSWORD"] || "" %>
   host: <%= ENV["PG_DB_HOST"] || "localhost" %>
   port: <%= ENV["PG_DB_PORT"] || 5432 %>
+
+queue:
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  database: <%= ENV["PG_DB_NAME"] || "pgdojo_production" %>
+  username: <%= ENV["PG_DB_USERNAME"] || "postgres" %>
+  password: <%= ENV["PG_DB_PASSWORD"] || "" %>
+  host: <%= ENV["PG_DB_HOST"] || "localhost" %>
+  port: <%= ENV["PG_DB_PORT"] || 5432 %>
