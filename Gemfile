@@ -22,6 +22,8 @@ gem "cssbundling-rails"
 gem "foreman"
 gem 'pry-rails'
 gem 'dotenv-rails', groups: [:development, :test, :production]
+gem 'pg', group: :production
+
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
