@@ -30,4 +30,8 @@ production:
   password: <%= ENV["PG_DB_PASSWORD"] %>
   host: <%= ENV["PG_DB_HOST"] %>
   port: 5432
+  
+cable:
+  <<: *production
+
 
