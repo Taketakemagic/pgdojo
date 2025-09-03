@@ -6,7 +6,7 @@ threads threads_count, threads_count
 # port ENV.fetch("PORT") { 3000 }
 
 # UNIXソケットでNginxと連携
-bind "unix://#{Rails.root}/tmp/sockets/puma.sock"
+bind "unix://#{Dir.pwd}/tmp/sockets/puma.sock"
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
