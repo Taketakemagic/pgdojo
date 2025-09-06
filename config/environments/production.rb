@@ -34,9 +34,11 @@ Rails.application.configure do
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
 
   # Log to STDOUT with the current request id as a default log tag.
-  config.log_tags = [ :request_id ]
-  config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)
   config.hosts << "pgtyping.tktkcode.com"
+  config.log_tags = [ :request_id ]
+  config.logger = ActiveSupport::Logger.new("log/production.log")
+  config.log_level = :info # 必要に応じて :debug に変更
+
 
   # Change to "debug" to log everything (including potentially personally-identifiable information!)
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
