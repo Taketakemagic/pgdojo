@@ -1,23 +1,37 @@
 class ResultController < ApplicationController
   def index
-    @duration = params[:duration]
-    @misses = params[:misses]
+    @score = params[:score].to_i
+    @clear_time = params[:clear_time].to_i
+    @miss_count = params[:miss_count].to_i
+    @correct_count = params[:correct_count].to_i
+    @top_scores = Score.order(score: :desc).limit(10)
   end
+
 
   def create
-    duration = params[:duration].to_i
+    base_score = 1000
     miss_data = JSON.parse(params[:miss_data])
+    correct_count = 10 - miss_data.values.sum
+    miss_penalty = miss_data.values.sum * 50
+    accuracy_bonus = correct_count * 20
+    speed_bonus = [300 - params[:duration].to_i, 0].max * 2
+    score = base_score - miss_penalty + accuracy_bonus + speed_bonus
 
-    @total_misses = miss_data.values.sum
-    @duration = duration
-    @miss_breakdown = miss_data
+    Score.create!(
+      user_name: "ゲスト",
+      clear_time: params[:duration],
+      miss_count: miss_data.values.sum,
+      score: score
+    )
 
-    # 必要なら Result モデルに保存して result.id を取得
-    # result = Result.create!(duration: @duration, misses: @total_misses, breakdown: miss_data)
-    # redirect_to result_path(result)
-
-    redirect_to result_path(id: 1, duration: @duration, misses: @total_misses)
+    redirect_to result_path(
+      score: score,
+      clear_time: params[:duration],
+      miss_count: miss_data.values.sum,
+      correct_count: correct_count
+    )
   end
+
 
 
 end

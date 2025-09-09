@@ -1,4 +1,28 @@
 .result-screen
-  h2 結果発表！
-  p 所要時間: #{@duration} 秒
-  p ミス合計: #{@misses} 回
+  .score-summary
+    h2 あなたのスコア
+    .score-value = @score
+
+    .details
+      span タイム: #{@clear_time}秒
+      span ミス: #{@miss_count}回
+      span 正解数: #{@correct_count}問
+
+  h3 ランキングTOP10
+
+  table.ranking-table
+    thead
+      tr
+        th 順位
+        th 名前
+        th スコア
+        th 時間
+        th ミス
+    tbody
+      - @top_scores.each_with_index do |s, i|
+        tr
+          td.rank = i + 1
+          td.user-name = s.user_name
+          td.score = s.score
+          td.time = "#{s.clear_time}秒"
+          td.miss = "#{s.miss_count}回"

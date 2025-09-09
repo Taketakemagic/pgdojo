@@ -1,40 +1,81 @@
-.result-screen
-  display: flex
-  flex-direction: column
-  align-items: center
-  justify-content: center
-  padding: 60px 20px
-  color: #e2e8f0
-  font-family: 'Fira Code', monospace
-  text-align: center
+.result-screen 
+  padding: 2rem
+  background: #f9f9f9
+  font-family: 'Helvetica Neue', sans-serif
 
-  h2
-    font-size: 36px
-    margin-bottom: 30px
-    color: #3b82f6
-    animation: fadeIn 0.8s ease
+  .score-summary 
+    text-align: center
+    margin-bottom: 2rem
 
-  p
-    font-size: 20px
-    margin-bottom: 16px
-    background-color: #1e293b
-    padding: 12px 24px
-    border-radius: 8px
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3)
-    animation: slideUp 0.6s ease
+    h2 
+      font-size: 2rem
+      color: #333
+    
 
-@keyframes fadeIn
-  from
-    opacity: 0
-    transform: scale(0.95)
-  to
-    opacity: 1
-    transform: scale(1)
+    .score-value 
+      font-size: 3rem
+      font-weight: bold
+      color: #007acc
+    
 
-@keyframes slideUp
-  from
-    opacity: 0
-    transform: translateY(20px)
-  to
-    opacity: 1
-    transform: translateY(0)
+    .details 
+      margin-top: 1rem
+      font-size: 1rem
+      color: #666
+
+      span 
+        margin: 0 0.5rem
+      
+    
+  
+
+  .ranking-table 
+    width: 100%
+    border-collapse: collapse
+    margin-top: 2rem
+
+    th, td 
+      padding: 0.75rem 1rem
+      border-bottom: 1px solid #ddd
+      text-align: center
+    
+
+    th 
+      background-color: #007acc
+      color: #fff
+      font-weight: 600
+    
+
+    tr:nth-child(odd) 
+      background-color: #f0f8ff
+    
+
+    tr:first-child 
+      background-color: #ffe600
+      font-weight: bold
+
+      td 
+        color: #333
+      
+    
+
+    .rank 
+      font-size: 1.2rem
+      font-weight: bold
+    
+
+    .user-name 
+      font-weight: 500
+    
+
+    .score 
+      color: #007acc
+      font-weight: bold
+    
+
+    .time, .miss 
+      font-size: 0.9rem
+      color: #666
+    
+  
+
